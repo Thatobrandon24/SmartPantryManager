@@ -1,1 +1,2 @@
 # SmartPantryManager
+# SmartPantryManager
