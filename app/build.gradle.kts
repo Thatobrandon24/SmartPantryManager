@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.smart_pantry_manager"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.smart_pantry_manager"
