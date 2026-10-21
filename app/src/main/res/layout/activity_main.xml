@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:text="Add Ingredient"
             android:minHeight="56dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
 
         <Button
             android:id="@+id/btnRecipes"
@@ -60,7 +60,15 @@
             android:layout_height="wrap_content"
             android:text="Suggested Recipes"
             android:minHeight="56dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/btnRecipeDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recipe Details"
+            android:textAllCaps="false"
+            android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/btnSettings"
@@ -68,7 +76,7 @@
             android:layout_height="wrap_content"
             android:text="Settings"
             android:minHeight="56dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="match_parent"

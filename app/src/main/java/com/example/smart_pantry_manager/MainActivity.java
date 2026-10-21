@@ -17,16 +17,27 @@ public class MainActivity extends AppCompatActivity {
         Button btnPantry = findViewById(R.id.btnPantry);
         Button btnAddIngredient = findViewById(R.id.btnAddIngredient);
         Button btnRecipes = findViewById(R.id.btnRecipes);
+        Button btnRecipeDetails = findViewById(R.id.btnRecipeDetails);
         Button btnSettings = findViewById(R.id.btnSettings);
 
-        btnPantry.setOnClickListener(v ->
-                showMessage("Pantry Screen is Next"));
+        btnPantry.setOnClickListener(view -> {
+            showMessage("Pantry Screen is Next");
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    PantryActivity.class
+            );
+            startActivity(intent);
+
+        });
 
         btnAddIngredient.setOnClickListener(v ->
                 showMessage("Add Ingredient screen is next"));
 
         btnRecipes.setOnClickListener(v ->
                 showMessage("Recipe suggestions are next"));
+
+        btnRecipeDetails.setOnClickListener(view ->
+                showMessage("Recipe details screen is next"));
 
         btnSettings.setOnClickListener(v ->
                 showMessage("Settings screen is next"));
