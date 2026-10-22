@@ -30,8 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        btnAddIngredient.setOnClickListener(v ->
-                showMessage("Add Ingredient screen is next"));
+        btnAddIngredient.setOnClickListener(view -> {
+            showMessage("Add Ingredient screen is next");
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    IngredientFormActivity.class
+
+            );
+            startActivity(intent);
+
+        });
 
         btnRecipes.setOnClickListener(v ->
                 showMessage("Recipe suggestions are next"));
