@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Suggested Recipes"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#263238"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recipes you can prepare using your available ingredients."
+        android:textSize="15sp"
+        android:textColor="#616161"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:id="@+id/txtNoRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No recipes match your available ingredients and quantities."
+        android:textSize="16sp"
+        android:textColor="#616161"
+        android:gravity="center"
+        android:padding="20dp"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSuggestedRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btnRefreshRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Refresh Recipes" />
+
+    <Button
+        android:id="@+id/btnBackToPantry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Pantry" />
+
+</LinearLayout>

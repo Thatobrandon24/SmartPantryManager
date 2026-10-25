@@ -70,7 +70,9 @@ public class PantryActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadPantryItems();
+        if (databaseHelper != null && adapter != null) {
+            loadPantryItems();
+        }
     }
 
     private void loadPantryItems() {
@@ -78,28 +80,37 @@ public class PantryActivity extends AppCompatActivity {
         List<PantryItem> items = new ArrayList<>();
 
         try (Cursor cursor = databaseHelper.getAllPantryItems()) {
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
 
-            while (cursor.moveToNext()) {
+                    long id = cursor.getLong(
+                            cursor.getColumnIndexOrThrow("_id"));
 
-                long id = cursor.getLong(
-                        cursor.getColumnIndexOrThrow("_id"));
+                    String name = cursor.getString(
+                            cursor.getColumnIndexOrThrow("ingredient_name"));
 
-                String name = cursor.getString(
-                        cursor.getColumnIndexOrThrow("ingredient_name"));
+                    double quantity = cursor.getDouble(
+                            cursor.getColumnIndexOrThrow("quantity"));
 
-                double quantity = cursor.getDouble(
-                        cursor.getColumnIndexOrThrow("quantity"));
+                    String unit = cursor.getString(
+                            cursor.getColumnIndexOrThrow("unit"));
 
-                String unit = cursor.getString(
-                        cursor.getColumnIndexOrThrow("unit"));
+                    String expiry = cursor.getString(
+                            cursor.getColumnIndexOrThrow("expiration_date"));
 
-                String expiry = cursor.getString(
-                        cursor.getColumnIndexOrThrow("expiration_date"));
-
-                items.add(new PantryItem(
-                        id, name, quantity, unit, expiry));
+                    items.add(new PantryItem(
+                            id, name, quantity, unit, expiry));
+                }
             }
+        } catch (Exception e) {
+            Toast.makeText(
+                    this,
+                    "Unable to load pantry items: " + e.getMessage(),
+                    Toast.LENGTH_LONG
+            ).show();
+            return;
         }
+
 
         adapter.setItems(items);
 
@@ -149,6 +160,8 @@ public class PantryActivity extends AppCompatActivity {
 
         if (databaseHelper != null) {
             databaseHelper.close();
+            databaseHelper = null;
         }
+        super.onDestroy();
     }
 }
