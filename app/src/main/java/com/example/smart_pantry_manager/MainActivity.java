@@ -59,8 +59,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnSettings.setOnClickListener(v ->
-                showMessage("Settings screen is next"));
+        btnSettings.setOnClickListener(view -> {
+            showMessage("Settings screen is next");
+            android.content.Intent intent =
+                    new android.content.Intent(
+                            MainActivity.this,
+                            SettingsActivity.class
+                    );
+
+            startActivity(intent);
+        });
     }
 
     private void showMessage(String message) {

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "smart_pantry.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public static final String PANTRY_TABLE = "pantry_table";
     public static final String RECIPE_TABLE = "recipe_table";
@@ -219,7 +219,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int oldVersion,
             int newVersion) {
 
-        // Add version-specific migrations here when the schema changes.
-        // Do not drop tables: existing user data must be preserved.
+        if (oldVersion < 2) {
+            insertSampleRecipes(db);
+        }
     }
 }

@@ -8,4 +8,22 @@
         <item>ml</item>
         <item>l</item>
     </string-array>
+
+    <string-array name="measurement_options">
+        <item>Grams and millilitres (g/ml)</item>
+        <item>Kilograms and litres (kg/l)</item>
+    </string-array>
+
+    <string-array name="expiry_warning_options">
+        <item>1 day before expiry</item>
+        <item>3 days before expiry</item>
+        <item>5 days before expiry</item>
+        <item>7 days before expiry</item>
+    </string-array>
+
+    <string-array name="pantry_sort_options">
+        <item>Ingredient name</item>
+        <item>Expiry date</item>
+        <item>Quantity</item>
+    </string-array>
 </resources>
