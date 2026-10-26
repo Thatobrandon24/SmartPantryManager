@@ -31,6 +31,11 @@
         <activity
             android:name=".SuggestedRecipesActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".RecipeDetailsActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

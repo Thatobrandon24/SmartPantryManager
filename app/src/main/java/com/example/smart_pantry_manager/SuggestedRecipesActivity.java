@@ -94,7 +94,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         );
     }
 
-    private static class RecipeAdapter
+    private class RecipeAdapter
             extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
         private final List<RecipeMatcher.RecipeResult> items;
@@ -134,6 +134,16 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
             holder.txtRecipeInstructions.setText(
                     recipe.instructions
             );
+
+            holder.itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(
+                        SuggestedRecipesActivity.this,
+                        RecipeDetailsActivity.class
+                );
+
+                intent.putExtra("recipe_id", recipe.id);
+                startActivity(intent);
+            });
         }
 
         @Override
@@ -141,7 +151,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
             return items.size();
         }
 
-        static class RecipeViewHolder extends RecyclerView.ViewHolder {
+        private class RecipeViewHolder extends RecyclerView.ViewHolder {
 
             TextView txtRecipeName;
             TextView txtPreparationTime;

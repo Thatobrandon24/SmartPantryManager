@@ -50,8 +50,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnRecipeDetails.setOnClickListener(view ->
-                showMessage("Recipe details screen is next"));
+        btnRecipeDetails.setOnClickListener(view -> {
+            showMessage("Recipe details screen is next");
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    SuggestedRecipesActivity.class
+            );
+            startActivity(intent);
+        });
 
         btnSettings.setOnClickListener(v ->
                 showMessage("Settings screen is next"));

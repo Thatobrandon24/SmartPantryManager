@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PantryAdapter
         extends RecyclerView.Adapter<PantryAdapter.PantryViewHolder> {
@@ -53,12 +54,27 @@ public class PantryAdapter
 
         holder.name.setText(item.getName());
 
-        String details = "The Quantity: " + item.getQuantity()
-                + " " + item.getUnit();
+        String quantity = String.format(
+                Locale.getDefault(),
+                "%s",
+                item.getQuantity()
+        );
 
-        if (item.getExpiryDate() != null
-                && !item.getExpiryDate().trim().isEmpty()) {
-            details += "\nExpires: " + item.getExpiryDate();
+        // Display whole numbers without unnecessary decimal places.
+        if (item.getQuantity() == Math.floor(item.getQuantity())) {
+            quantity = String.format(
+                    Locale.getDefault(),
+                    "%.0f",
+                    item.getQuantity()
+            );
+        }
+
+        String details = "Quantity: " + quantity + " " + item.getUnit();
+
+        String expiry = item.getExpiryDate();
+
+        if (expiry != null && !expiry.trim().isEmpty()) {
+            details += "\nExpires: " + expiry;
         }
 
         holder.details.setText(details);
@@ -77,10 +93,10 @@ public class PantryAdapter
 
     static class PantryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name;
-        TextView details;
-        Button editButton;
-        Button deleteButton;
+        final TextView name;
+        final TextView details;
+        final Button editButton;
+        final Button deleteButton;
 
         PantryViewHolder(@NonNull View itemView) {
             super(itemView);
