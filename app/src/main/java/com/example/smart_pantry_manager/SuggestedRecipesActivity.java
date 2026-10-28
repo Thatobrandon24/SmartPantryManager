@@ -32,6 +32,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suggested_recipes);
 
+        // Initialize the database helper and recipe-matching with available ingredients
         databaseHelper = new DatabaseHelper(this);
         recipeMatcher = new RecipeMatcher(databaseHelper);
 
@@ -76,6 +77,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         }
     }
 
+    //Finds recipes that can be prepared with the available ingredients and updates
     private void loadSuggestedRecipes() {
         recipes.clear();
 
@@ -94,6 +96,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         );
     }
 
+    // displaying individual recipes in RecyclerView
     private class RecipeAdapter
             extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
@@ -125,12 +128,14 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
 
             holder.txtRecipeName.setText(recipe.name);
 
+            // Display the estimated preparation time for the recipe
             holder.txtPreparationTime.setText(
                     "Preparation time: "
                             + recipe.preparationMinutes
                             + " minutes"
             );
 
+            // Display the recipe instructions to be followed
             holder.txtRecipeInstructions.setText(
                     recipe.instructions
             );
@@ -160,24 +165,19 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
             RecipeViewHolder(View itemView) {
                 super(itemView);
 
-                txtRecipeName =
-                        itemView.findViewById(R.id.txtRecipeName);
-
-                txtPreparationTime =
-                        itemView.findViewById(R.id.txtPreparationTime);
-
-                txtRecipeInstructions =
-                        itemView.findViewById(R.id.txtRecipeInstructions);
+                txtRecipeName = itemView.findViewById(R.id.txtRecipeName);
+                txtPreparationTime = itemView.findViewById(R.id.txtPreparationTime);
+                txtRecipeInstructions = itemView.findViewById(R.id.txtRecipeInstructions);
             }
         }
     }
 
+    // it closes the database helper when the activity is closed down
     @Override
     protected void onDestroy() {
         if (databaseHelper != null) {
             databaseHelper.close();
         }
-
         super.onDestroy();
     }
 }

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "smart_pantry.db";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 5;
 
     public static final String PANTRY_TABLE = "pantry_table";
     public static final String RECIPE_TABLE = "recipe_table";
@@ -73,6 +73,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             insertRecipeIngredient(db, pastaId, "garlic", 1, "units");
             insertRecipeIngredient(db, pastaId, "olive oil", 15, "ml");
 
+            long Chicken_pastaId = insertRecipe(
+                    db,
+                    "Chicken Pasta Bake",
+                    "Serves 6 | Prep: 30 minutes | Cook: 45 minutes\n\n" +
+                            "1. Heat 30 ml of olive oil in a pan. " +
+                            "Fry the chopped onion gently for 10-12 minutes.\n\n" +
+                            "2. Add the crushed garlic and chilli flakes. " +
+                            "Cook for 1 minute. Add the chopped tomatoes and sugar. " +
+                            "Season to taste and simmer uncovered for about 20 minutes " +
+                            "until the sauce thickens. Stir in the mascarpone.\n\n" +
+                            "3. Heat 15 ml of olive oil in a separate frying pan. " +
+                            "Season the chicken and fry for 5-7 minutes, or until " +
+                            "cooked through. Ensure the chicken reaches a safe internal " +
+                            "temperature of 74 degrees C.\n\n" +
+                            "4. Preheat the oven to 220 degrees C " +
+                            "(200 degrees C fan).\n\n" +
+                            "5. Cook the penne according to the packet instructions. " +
+                            "Drain and toss with the remaining 15 ml of olive oil.\n\n" +
+                            "6. Transfer the pasta to an ovenproof dish. " +
+                            "Mix in the cooked chicken and tomato sauce.\n\n" +
+                            "7. Top with grated cheddar, mozzarella and chopped parsley. " +
+                            "Bake for about 20 minutes until golden and bubbling.\n\n" +
+                            "8. Serve hot. Check that the chicken is thoroughly cooked.",
+                    75
+            );
+
+            insertRecipeIngredient(db, Chicken_pastaId, "olive oil", 60, "ml");
+            insertRecipeIngredient(db, Chicken_pastaId, "onion", 1, "units");
+            insertRecipeIngredient(db, Chicken_pastaId, "garlic", 2, "units");
+            insertRecipeIngredient(db, Chicken_pastaId, "chilli flakes", 0.25, "tsp");
+            insertRecipeIngredient(db, Chicken_pastaId, "chopped tomatoes", 800, "g");
+            insertRecipeIngredient(db, Chicken_pastaId, "caster sugar", 1, "tsp");
+            insertRecipeIngredient(db, Chicken_pastaId, "mascarpone", 6, "tbsp");
+            insertRecipeIngredient(db, Chicken_pastaId, "chicken breast", 4, "units");
+            insertRecipeIngredient(db, Chicken_pastaId, "penne", 300, "g");
+            insertRecipeIngredient(db, Chicken_pastaId, "mature cheddar", 70, "g");
+            insertRecipeIngredient(db, Chicken_pastaId, "mozzarella", 50, "g");
+            insertRecipeIngredient(db, Chicken_pastaId, "parsley", 0.5, "bunch");
+
+
             long pancakeId = insertRecipe(
                     db,
                     "Simple Pancakes",
@@ -86,6 +126,177 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             insertRecipeIngredient(db, pancakeId, "flour", 150, "g");
             insertRecipeIngredient(db, pancakeId, "milk", 200, "ml");
             insertRecipeIngredient(db, pancakeId, "egg", 1, "units");
+
+
+            long tomatoRiceId = insertRecipe(
+                    db,
+                    "Tomato Rice",
+                    "1. Wash the rice.\n" +
+                            "2. Chop the tomato and onion.\n" +
+                            "3. Cook the onion and tomato in a pan.\n" +
+                            "4. Add the rice and water, then cook until tender.",
+                    25
+            );
+
+            insertRecipeIngredient(db, tomatoRiceId, "rice", 200, "g");
+            insertRecipeIngredient(db, tomatoRiceId, "tomato", 100, "g");
+            insertRecipeIngredient(db, tomatoRiceId, "onion", 50, "g");
+
+
+            long eggTomatoId = insertRecipe(
+                    db,
+                    "Egg and Tomato",
+                    "1. Chop the tomato and onion.\n" +
+                            "2. Cook them in a pan until soft.\n" +
+                            "3. Add the eggs and stir until cooked.",
+                    15
+            );
+
+            insertRecipeIngredient(db, eggTomatoId, "egg", 2, "units");
+            insertRecipeIngredient(db, eggTomatoId, "tomato", 100, "g");
+            insertRecipeIngredient(db, eggTomatoId, "onion", 30, "g");
+
+
+            long potatoOnionId = insertRecipe(
+                    db,
+                    "Potato and Onion",
+                    "1. Peel and chop the potatoes.\n" +
+                            "2. Chop the onion.\n" +
+                            "3. Boil the potatoes until tender.\n" +
+                            "4. Add the onion and cook until ready.",
+                    30
+            );
+
+            insertRecipeIngredient(db, potatoOnionId, "potato", 300, "g");
+            insertRecipeIngredient(db, potatoOnionId, "onion", 50, "g");
+
+            long Onion_Fried_RiceId = insertRecipe(
+                    db,
+                    "Onion Fried Rice",
+                    "1. Cook the rice until tender.\n" +
+                            "2. Chop the onion.\n" +
+                            "3. Cook the onion in a pan.\n" +
+                            "4. Add the cooked rice and mix well.",
+                    20
+            );
+            insertRecipeIngredient(db, Onion_Fried_RiceId, "rice", 200, "g");
+            insertRecipeIngredient(db, Onion_Fried_RiceId, "onion", 50, "g");
+
+            long Tomato_Egg_RiceId = insertRecipe(
+                    db,
+                    "Tomato Egg Rice",
+                    "1. Cook the rice.\n" +
+                            "2. Chop and cook the tomato.\n" +
+                            "3. Add the egg and cook until set.\n" +
+                            "4. Serve with the rice.",
+                    25
+            );
+            insertRecipeIngredient(db, Tomato_Egg_RiceId, "rice", 150, "g");
+            insertRecipeIngredient(db, Tomato_Egg_RiceId, "tomato", 100, "g");
+            insertRecipeIngredient(db, Tomato_Egg_RiceId, "egg", 1, "units");
+
+            long Potato_Tomato_HashId = insertRecipe(
+                    db,
+                    "Potato Tomato Hash",
+                    "1. Wash and dice the potato.\n" +
+                            "2. Cook the potato until tender.\n" +
+                            "3. Add chopped tomato and onion.\n" +
+                            "4. Cook until the vegetables soften.",
+                    30
+            );
+            insertRecipeIngredient(db, Potato_Tomato_HashId, "potato", 250, "g");
+            insertRecipeIngredient(db, Potato_Tomato_HashId, "tomato", 100, "g");
+            insertRecipeIngredient(db, Potato_Tomato_HashId, "onion", 30, "g");
+
+            long Onion_OmeletteId = insertRecipe(
+                    db,
+                    "Onion Omelette",
+                    "1. Beat the eggs.\n" +
+                            "2. Chop the onion.\n" +
+                            "3. Cook the onion in a pan.\n" +
+                            "4. Add the eggs and cook until set.",
+                    10
+            );
+            insertRecipeIngredient(db, Onion_OmeletteId, "egg", 2, "units");
+            insertRecipeIngredient(db, Onion_OmeletteId, "onion", 30, "g");
+
+            long Tomato_OmeletteId = insertRecipe(
+                    db,
+                    "Tomato Omelette",
+                    "1. Beat the eggs.\n" +
+                            "2. Chop the tomato.\n" +
+                            "3. Cook the tomato briefly.\n" +
+                            "4. Add the eggs and cook until set.",
+                    12
+            );
+            insertRecipeIngredient(db, Tomato_OmeletteId, "egg", 2, "units");
+            insertRecipeIngredient(db, Tomato_OmeletteId, "tomato", 100, "g");
+
+            long Garlic_Tomato_PastaId = insertRecipe(
+                    db,
+                    "Garlic Tomato Pasta",
+                    "1. Cook the pasta according to its instructions.\n" +
+                            "2. Chop the tomato and garlic.\n" +
+                            "3. Cook the garlic and tomato in olive oil.\n" +
+                            "4. Mix the sauce with the pasta.",
+                    25
+            );
+            insertRecipeIngredient(db, Garlic_Tomato_PastaId, "pasta", 200, "g");
+            insertRecipeIngredient(db, Garlic_Tomato_PastaId, "tomato", 100, "g");
+            insertRecipeIngredient(db, Garlic_Tomato_PastaId, "garlic", 1, "units");
+            insertRecipeIngredient(db, Garlic_Tomato_PastaId, "olive oil", 15, "ml");
+
+            long Egg_and_Potato_CakesId = insertRecipe(
+                    db,
+                    "Egg and Potato Cakes",
+                    "1. Boil the potato until tender.\n" +
+                            "2. Mash the potato.\n" +
+                            "3. Beat the egg and mix it into the potato.\n" +
+                            "4. Shape into small cakes and cook thoroughly.",
+                    25
+            );
+            insertRecipeIngredient(db, Egg_and_Potato_CakesId, "potato", 200, "g");
+            insertRecipeIngredient(db, Egg_and_Potato_CakesId, "egg", 1, "units");
+
+            long Potato_Rice_BowlId = insertRecipe(
+                    db,
+                    "Potato Rice Bowl",
+                    "1. Cook the rice.\n" +
+                            "2. Dice and cook the potato until tender.\n" +
+                            "3. Chop and cook the tomato.\n" +
+                            "4. Serve the vegetables over the rice.",
+                    30
+            );
+            insertRecipeIngredient(db, Potato_Rice_BowlId, "potato", 150, "g");
+            insertRecipeIngredient(db, Potato_Rice_BowlId, "rice", 150, "g");
+            insertRecipeIngredient(db, Potato_Rice_BowlId, "tomato", 50, "g");
+
+            long Egg_SkilletId = insertRecipe(
+                    db,
+                    "Tomato Onion Egg Skillet",
+                    "1. Chop the tomato and onion.\n" +
+                            "2. Cook the vegetables in a pan.\n" +
+                            "3. Add the eggs.\n" +
+                            "4. Cook until the eggs are fully set.",
+                    15
+            );
+            insertRecipeIngredient(db, Egg_SkilletId, "tomato", 100, "g");
+            insertRecipeIngredient(db, Egg_SkilletId, "onion", 50, "g");
+            insertRecipeIngredient(db, Egg_SkilletId, "egg", 2, "units");
+
+            long Tomato_Rice_and_PotatoId = insertRecipe(
+                    db,
+                    "Tomato Rice and Potato Mix",
+                    "1. Cook the rice.\n" +
+                            "2. Dice and cook the potato until tender.\n" +
+                            "3. Chop and cook the tomato and onion.\n" +
+                            "4. Combine everything and heat thoroughly.",
+                    35
+            );
+            insertRecipeIngredient(db, Tomato_Rice_and_PotatoId, "rice", 150, "g");
+            insertRecipeIngredient(db, Tomato_Rice_and_PotatoId, "potato", 150, "g");
+            insertRecipeIngredient(db, Tomato_Rice_and_PotatoId, "tomato", 100, "g");
+            insertRecipeIngredient(db, Tomato_Rice_and_PotatoId, "onion", 30, "g");
 
             db.setTransactionSuccessful();
         } finally {
@@ -123,7 +334,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insertOrThrow(RECIPE_INGREDIENTS_TABLE, null, values);
     }
 
-    // CREATE: add a pantry ingredient.
+    // add a pantry ingredient
     public long addPantryItem(
             String name,
             double quantity,
@@ -148,7 +359,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 PANTRY_TABLE, null, values);
     }
 
-    // READ: return all pantry ingredients.
+    //return all pantry ingredients.
     public Cursor getAllPantryItems() {
         return getReadableDatabase().query(
                 PANTRY_TABLE,
@@ -161,7 +372,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    // READ: retrieve one ingredient by its database ID.
+    //retrieve one ingredient by its database ID
     public Cursor getPantryItem(long id) {
         return getReadableDatabase().query(
                 PANTRY_TABLE,
@@ -174,7 +385,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    // UPDATE: edit an existing ingredient.
+    //  edit an existing ingredient from pantry
     public int updatePantryItem(
             long id,
             String name,
@@ -204,7 +415,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    // DELETE: remove an ingredient.
+    //remove an ingredient from pantry
     public int deletePantryItem(long id) {
         return getWritableDatabase().delete(
                 PANTRY_TABLE,

@@ -17,6 +17,7 @@ public class RecipeMatcher {
         this.databaseHelper = databaseHelper;
     }
 
+    // stores the details of a recipe that matches the available pantry items
     public static class RecipeResult {
         public final long id;
         public final String name;
@@ -200,17 +201,20 @@ public class RecipeMatcher {
         return requirements;
     }
 
-    // Normalize common ingredient names and plural forms.
+    // Normalize common ingredient names and and fixes plural forms to improve matching
     public static String normalizeName(String input) {
 
+        // Handle missing values for ingredient names
         if (input == null) {
             return "";
         }
 
+        // Remove extra spaces and treats capital and small letters the same
         String name = input.trim()
                 .toLowerCase(Locale.ROOT)
                 .replaceAll("\\s+", " ");
 
+        // fixes irregular plural forms
         Map<String, String> irregular = new HashMap<>();
         irregular.put("tomatoes", "tomato");
         irregular.put("potatoes", "potato");
@@ -241,14 +245,17 @@ public class RecipeMatcher {
         return name;
     }
 
+    // It makes units easy for measurement and reduces them like "grams" to "g"
     private String normalizeUnit(String input) {
 
+        // Handle a missing value
         if (input == null) {
             return "";
         }
 
         String unit = input.trim().toLowerCase(Locale.ROOT);
 
+        // Converts unit names to standard abbreviations
         switch (unit) {
             case "kg":
             case "kilogram":
@@ -287,7 +294,7 @@ public class RecipeMatcher {
         }
     }
 
-    // Return null for incompatible units.
+    // converts quantities of ingredients
     private Double convert(
             double quantity, String from, String to) {
 
@@ -310,7 +317,6 @@ public class RecipeMatcher {
         if (from.equals("ml") && to.equals("l")) {
             return quantity / 1000;
         }
-
         return null;
     }
 }

@@ -29,7 +29,7 @@
             android:textColor="#606B78"
             android:paddingBottom="24dp" />
 
-        <!-- Profile -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

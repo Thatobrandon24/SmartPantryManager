@@ -134,34 +134,40 @@ public class IngredientFormActivity extends AppCompatActivity {
         picker.show();
     }
 
+    // Validates the form and adds or updates the ingredient in the SQLite database
     private void saveIngredient() {
         String name = edtIngredientName.getText().toString().trim();
         String quantityText = edtQuantity.getText().toString().trim();
         String unit = edtUnit.getText().toString().trim();
 
+        // Ensure that a value or id for the ingredient has been entered
         if (name.isEmpty()) {
-            edtIngredientName.setError("Enter an ingredient name");
+            edtIngredientName.setError("Enter the ingredient name");
             edtIngredientName.requestFocus();
             return;
         }
 
+        // Ensure that the quantity field is not empty.
         if (quantityText.isEmpty()) {
-            edtQuantity.setError("Enter a quantity");
+            edtQuantity.setError("Enter the quantity");
             edtQuantity.requestFocus();
             return;
         }
 
+        // Ensure the measurement unit has been entered for the ingredient
         if (unit.isEmpty()) {
-            edtUnit.setError("Enter a unit");
+            edtUnit.setError("Enter the unit");
             edtUnit.requestFocus();
             return;
         }
 
         double quantity;
 
+        // Convert the quantity text into a numeric value.
         try {
             quantity = Double.parseDouble(quantityText);
         } catch (NumberFormatException exception) {
+            // Display an error if the user does not enter number
             edtQuantity.setError("Enter a valid number");
             edtQuantity.requestFocus();
             return;
@@ -177,6 +183,7 @@ public class IngredientFormActivity extends AppCompatActivity {
 
         long result;
 
+        // Insert a new record if no ingredient ID exists.
         if (ingredientId == -1L) {
             result = databaseHelper.addPantryItem(
                     name, quantity, unit, expiryDate);
@@ -205,6 +212,7 @@ public class IngredientFormActivity extends AppCompatActivity {
         }
     }
 
+    // it closes the database helper when the activity is closed down
     @Override
     protected void onDestroy() {
         if (databaseHelper != null) {

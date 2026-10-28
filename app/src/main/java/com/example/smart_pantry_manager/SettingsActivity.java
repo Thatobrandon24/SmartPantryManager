@@ -19,21 +19,16 @@ public class SettingsActivity extends AppCompatActivity {
     private Switch switchExpiryReminders;
     private SharedPreferences preferences;
 
-    private static final String PREFS_NAME =
-            "smart_pantry_settings";
-    private static final String KEY_PROFILE_NAME =
-            "profile_name";
-    private static final String KEY_PROFILE_EMAIL =
-            "profile_email";
-    private static final String KEY_MEASUREMENT =
-            "measurement";
-    private static final String KEY_REMINDERS =
-            "expiry_reminders";
-    private static final String KEY_EXPIRY_DAYS =
-            "expiry_days";
-    private static final String KEY_SORT_ORDER =
-            "sort_order";
+    private static final String PREFS_NAME = "smart_pantry_settings";
+    private static final String KEY_PROFILE_NAME = "profile_name";
+    private static final String KEY_PROFILE_EMAIL = "profile_email";
+    private static final String KEY_MEASUREMENT = "measurement";
+    private static final String KEY_REMINDERS = "expiry_reminders";
+    private static final String KEY_EXPIRY_DAYS = "expiry_days";
+    private static final String KEY_SORT_ORDER = "sort_order";
 
+    //it is called when the Settings screen is created and loads previously saved settings,
+    //   and assigns actions to the buttons
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
                 MODE_PRIVATE
         );
 
+        // shows the settings saved before by the user.
         loadSettings();
 
         btnSaveSettings.setOnClickListener(
@@ -138,7 +134,7 @@ public class SettingsActivity extends AppCompatActivity {
                 expiryPosition
         );
 
-        // to load pantry sort order
+        // to load the pantry sort in order
         int sortOrder = preferences.getInt(
                 KEY_SORT_ORDER, 0
         );
@@ -161,7 +157,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void saveSettings() {
 
-        // Read profile
+        // Read profile and takes out spaces that are not needed
         String profileName =
                 editProfileName.getText()
                         .toString()
@@ -180,8 +176,10 @@ public class SettingsActivity extends AppCompatActivity {
         boolean reminders =
                 switchExpiryReminders.isChecked();
 
+
         int[] warningDays = {1, 3, 5, 7};
 
+        //gets the position of the selected
         int expiryPosition =
                 spinnerExpiryDays.getSelectedItemPosition();
 
@@ -189,11 +187,11 @@ public class SettingsActivity extends AppCompatActivity {
                 validPosition(expiryPosition, warningDays.length)
                 ];
 
-        // to read sort order
+        // to read sort order in a dropdown
         int sortOrder =
                 spinnerSortOrder.getSelectedItemPosition();
 
-        // to save all settings together
+        // to save all settings together, in a preference file
         boolean saved = preferences.edit()
                 .putString(
                         KEY_PROFILE_NAME,
@@ -221,6 +219,7 @@ public class SettingsActivity extends AppCompatActivity {
                 )
                 .commit();
 
+        // let the user know if the settings were saved.
         if (saved) {
             Toast.makeText(
                     this,

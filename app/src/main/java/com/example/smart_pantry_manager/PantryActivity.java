@@ -73,8 +73,10 @@ public class PantryActivity extends AppCompatActivity {
         if (databaseHelper != null && adapter != null) {
             loadPantryItems();
         }
+
     }
 
+    // Retrieves pantry records from SQLite and displays them in the list
     private void loadPantryItems() {
 
         List<PantryItem> items = new ArrayList<>();
@@ -83,23 +85,17 @@ public class PantryActivity extends AppCompatActivity {
             if (cursor != null) {
                 while (cursor.moveToNext()) {
 
-                    long id = cursor.getLong(
-                            cursor.getColumnIndexOrThrow("_id"));
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
 
-                    String name = cursor.getString(
-                            cursor.getColumnIndexOrThrow("ingredient_name"));
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow("ingredient_name"));
 
-                    double quantity = cursor.getDouble(
-                            cursor.getColumnIndexOrThrow("quantity"));
+                    double quantity = cursor.getDouble(cursor.getColumnIndexOrThrow("quantity"));
 
-                    String unit = cursor.getString(
-                            cursor.getColumnIndexOrThrow("unit"));
+                    String unit = cursor.getString(cursor.getColumnIndexOrThrow("unit"));
 
-                    String expiry = cursor.getString(
-                            cursor.getColumnIndexOrThrow("expiration_date"));
+                    String expiry = cursor.getString(cursor.getColumnIndexOrThrow("expiration_date"));
 
-                    items.add(new PantryItem(
-                            id, name, quantity, unit, expiry));
+                    items.add(new PantryItem(id, name, quantity, unit, expiry));
                 }
             }
         } catch (Exception e) {
@@ -111,7 +107,7 @@ public class PantryActivity extends AppCompatActivity {
             return;
         }
 
-
+        // Update the RecyclerView with  latest pantry records
         adapter.setItems(items);
 
         boolean isEmpty = items.isEmpty();
@@ -123,6 +119,7 @@ public class PantryActivity extends AppCompatActivity {
                 isEmpty ? View.GONE : View.VISIBLE);
     }
 
+    // Displays a confirmation text before removing a pantry ingredient
     private void confirmDelete(PantryItem item) {
 
         new AlertDialog.Builder(this)
@@ -139,14 +136,14 @@ public class PantryActivity extends AppCompatActivity {
                             if (rowsDeleted > 0) {
                                 Toast.makeText(
                                         this,
-                                        "Ingredient has been deleted",
+                                        "Ingredient has been deleted from pantry",
                                         Toast.LENGTH_SHORT).show();
 
                                 loadPantryItems();
                             } else {
                                 Toast.makeText(
                                         this,
-                                        "It could not delete ingredient",
+                                        "It could not delete ingredient from pantry",
                                         Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -154,6 +151,7 @@ public class PantryActivity extends AppCompatActivity {
                 .show();
     }
 
+    // it closes the database helper when the activity is closed down
     @Override
     protected void onDestroy() {
         super.onDestroy();
